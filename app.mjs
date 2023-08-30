@@ -1,18 +1,11 @@
 import * as Mountains from "./Mountains/MountainsInterface.mjs"
 import express from "express"
-import bodyParser from "body-parser";
 import cors from "cors"
+import {configureApplication, corsOptions} from "./configureApplication.mjs";
 const app = express()
 const port = 3000
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cors())
-
-const corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+configureApplication(app)
 
 const sorter = (a, b) => {
     return b.height - a.height
@@ -22,7 +15,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to MountainsAPI!')
 })
 
-app.get('/mountains',cors(corsOptions),async (req,res) => {
+app.get('/mountains',async (req,res) => {
     const mountains = await Mountains.mountains(sorter)
     return res.send(JSON.stringify(mountains))
 })
