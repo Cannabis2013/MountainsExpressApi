@@ -1,6 +1,7 @@
 const nullMountain = {
     name: "",
     nativeNamess: [],
+    description: "",
     location: "",
     height: -1,
     range: "",
@@ -15,6 +16,7 @@ const mountains = [
         height: 8848,
         range: "Mahalangur Himal",
         type: "Mountain",
+        description: "The worlds tallest mountain that resides on the border of China And Nepal. Has claimed many lives.",
         id: 0
     },
     {
@@ -24,6 +26,7 @@ const mountains = [
         height: 5895,
         range: "",
         type: "stratovolcano",
+        description: "",
         id: 1
     },
     {
@@ -33,6 +36,7 @@ const mountains = [
         height: 4804,
         range: "French Alps",
         type: "Mountain",
+        description: "",
         id: 2
     },
     {
@@ -42,6 +46,7 @@ const mountains = [
         height: 147,
         range: "Græsplænen",
         type: "Hill",
+        description: "",
         id: 3
     },
     {
@@ -51,6 +56,7 @@ const mountains = [
         height: 8611,
         range: "Karakoram range",
         type: "Mountain",
+        description: "",
         id: 4
     },
     {
@@ -60,6 +66,7 @@ const mountains = [
         height: 8586,
         range: "",
         type: "Mountain",
+        description: "",
         id: 5
     },
 ]

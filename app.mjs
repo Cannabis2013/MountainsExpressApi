@@ -1,11 +1,7 @@
 import * as Mountains from "./Mountains/MountainsInterface.mjs"
-import express from "express"
-import cors from "cors"
-import {configureApplication, corsOptions} from "./configureApplication.mjs";
-const app = express()
-const port = 3000
+import {createApp} from "./createApp.mjs";
 
-configureApplication(app)
+const app = createApp()
 
 const sorter = (a, b) => {
     return b.height - a.height
@@ -41,10 +37,3 @@ app.post('/mountains/byHeight/', async (req,res) => {
     return res.send(JSON.stringify(mountains))
 })
 
-app.listen(port, () => {
-    console.log(`
-    GET http://localhost:${port}
-    GET http://localhost:${port}/mountains
-    POST http://localhost:${port}/mountains/byHeight
-    `)
-})
