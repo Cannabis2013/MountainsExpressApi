@@ -16,7 +16,7 @@ const mountains = [
         height: 8848,
         range: "Mahalangur Himal",
         type: "Mountain",
-        description: "The worlds tallest mountain that resides on the border of China And Nepal. Has claimed many lives.",
+        description: "The worlds tallest mountain that resides on the border of China And Nepal and has claimed many lives.",
         id: 0
     },
     {
