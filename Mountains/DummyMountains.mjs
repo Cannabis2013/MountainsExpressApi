@@ -65,7 +65,11 @@ let mountains = [
 
 let nextId = mountains.length
 
-export const all = async (sorter, filter) => {
+const sorter = (a, b) => {
+    return b.height - a.height
+}
+
+export const all = async (filter) => {
     let list = mountains
     if(filter)
         list = list.filter(filter)
