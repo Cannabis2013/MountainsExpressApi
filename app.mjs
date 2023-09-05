@@ -1,5 +1,6 @@
 import * as Mountains from "./Mountains/MountainsInterface.mjs"
 import {createApp} from "./createApp.mjs";
+import bodyParser from "body-parser";
 
 const app = createApp()
 
@@ -35,5 +36,19 @@ app.post('/mountains/byHeight/', async (req,res) => {
             return m.height < height
     })
     return res.send(JSON.stringify(mountains))
+})
+
+/*
+    This implementation needs more type checking.
+ */
+app.post('/mountains',async (req,res) => {
+    const persisted = await Mountains.addMountain(req.body)
+    return res.send(JSON.stringify(persisted))
+})
+
+app.delete('/mountains/:id',async (req,res) => {
+    const id = req.params.id
+    const result = await Mountains.removeMountain(id)
+    return res.send(JSON.stringify(result))
 })
 

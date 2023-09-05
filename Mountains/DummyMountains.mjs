@@ -1,14 +1,6 @@
-const nullMountain = {
-    name: "",
-    nativeNamess: [],
-    description: "",
-    location: "",
-    height: -1,
-    range: "",
-    id: -1
-}
+import {v4 as uuidv4} from 'uuid';
 
-const mountains = [
+let mountains = [
     {
         name: "Mount Everest",
         nativeNames: ["Sagarmatha","Chomolungma"],
@@ -17,7 +9,7 @@ const mountains = [
         range: "Mahalangur Himal",
         type: "Mountain",
         description: "The worlds tallest mountain that resides on the border of China And Nepal and has claimed many lives.",
-        id: 0
+        id: uuidv4()
     },
     {
         name: "Kilimanjaro",
@@ -26,18 +18,18 @@ const mountains = [
         height: 5895,
         range: "",
         type: "stratovolcano",
-        description: "",
-        id: 1
+        description: "A stratovolcano located in Tanzania neear the border of Kenye.",
+        id: uuidv4()
     },
     {
-        name: "Blanc",
+        name: "Mont Blanc",
         nativeNames: ["Monte Bianco"],
         location: "French/Italy",
         height: 4804,
         range: "French Alps",
         type: "Mountain",
-        description: "",
-        id: 2
+        description: "Regarded as the highest mountain in Europa with its 4804 meters above the sea level.",
+        id: uuidv4()
     },
     {
         name: "Himmelbjerget",
@@ -46,8 +38,8 @@ const mountains = [
         height: 147,
         range: "Græsplænen",
         type: "Hill",
-        description: "",
-        id: 3
+        description: "An iconic hill located in Denmark and is known for its beatifull nature. You should pay it a visit someday.",
+        id: uuidv4()
     },
     {
         name: "K2",
@@ -56,8 +48,8 @@ const mountains = [
         height: 8611,
         range: "Karakoram range",
         type: "Mountain",
-        description: "",
-        id: 4
+        description: "A shitty mountain that is regarded as the second highst mountain in the world. Has also claimed the lives of many good men.",
+        id: uuidv4()
     },
     {
         name: "Kangchenjunga",
@@ -66,9 +58,9 @@ const mountains = [
         height: 8586,
         range: "",
         type: "Mountain",
-        description: "",
-        id: 5
-    },
+        description: "This mountain is said to be the vacation location of the notorious Yeti. Be carefull.",
+        id: uuidv4()
+    }
 ]
 
 let nextId = mountains.length
@@ -83,15 +75,19 @@ export const all = async (sorter, filter) => {
 }
 
 export const single = async id => {
-    const numericId = Number.parseInt(id)
-    const mountain = mountains.find(m => m.id === numericId)
-    return mountain ? mountain : nullMountain
+    return mountains.find(m => m.id === id)
 }
 
-export const add = async mountain => {
-    mountain.id = nextId++
-    mountains.push(mountain)
-    return true
+export const add = async m => { 
+    m.id = uuidv4()
+    mountains.push(m)
+    return m
 }
 
-export const remove = async id => true
+export const remove = async id => {
+    const removed = mountains.find(m => m.id === id)
+    if(!removed)
+        return null
+    mountains = mountains.filter(m => m.id !== id)
+    return removed
+}

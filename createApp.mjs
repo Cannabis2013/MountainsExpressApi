@@ -14,12 +14,15 @@ export const createApp = () => {
     const port = 3000
     
     app.listen(port, () => {
-        console.log(`
+    })
+    console.log(`
     GET http://localhost:${port}
     GET http://localhost:${port}/mountains
+    GET http://localhost:${port}/mountains/{id}
     POST http://localhost:${port}/mountains/byHeight
+    POST http://localhost:${port}/mountains
+    DELETE http://localhost:${port}/mountains/{id}
     `)
-    })    
     
     return app
 }
