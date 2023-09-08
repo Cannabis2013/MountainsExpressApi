@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid';
 let mountains = [
     {
         name: "Mount Everest",
-        nativeNames: ["Sagarmatha","Chomolungma"],
+        nativeNames: ["Sagarmatha", "Chomolungma"],
         location: "China/Nepal",
         height: 8848,
         range: "Mahalangur Himal",
@@ -71,9 +71,9 @@ const sorter = (a, b) => {
 
 export const all = async (filter) => {
     let list = mountains
-    if(filter)
+    if (filter)
         list = list.filter(filter)
-    if(sorter)
+    if (sorter)
         list = list.sort(sorter)
     return list
 }
@@ -82,7 +82,7 @@ export const single = async id => {
     return mountains.find(m => m.id === id)
 }
 
-export const add = async m => { 
+export const add = async m => {
     m.id = uuidv4()
     mountains.push(m)
     return m
@@ -90,8 +90,22 @@ export const add = async m => {
 
 export const remove = async id => {
     const removed = mountains.find(m => m.id === id)
-    if(!removed)
+    if (!removed)
         return null
     mountains = mountains.filter(m => m.id !== id)
     return removed
+}
+
+export const updatePartly = async (updateValues) => {
+    const candidate = mountains.find(m => m.id === updateValues.id)
+    if(!candidate)
+        return null
+    candidate.name = updateValues.name ? updateValues.name : candidate.name
+    candidate.nativeNames = updateValues.nativeNames ? updateValues.nativeNames : candidate.nativeNames
+    candidate.location = updateValues.location ? updateValues.location : candidate.location
+    candidate.height = updateValues.height ? updateValues.height : candidate.height
+    candidate.range = updateValues.range ? updateValues.range : candidate.range
+    candidate.type = updateValues.type ? updateValues.type : candidate.type
+    candidate.description = updateValues.description ? updateValues.description : candidate.description
+    return candidate
 }
