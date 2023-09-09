@@ -6,8 +6,6 @@ import fs from "fs"
 
 let SECRET = fs.readFileSync('./auth0-cert.cer','utf8')
 
-console.log(SECRET)
-
 let app = null
 
 export default {
@@ -16,13 +14,13 @@ export default {
         if(app)
             return app
         app = express()
-        const jwtC = expressjwt({
+        const jwtChecker = expressjwt({
             audience: 'http://localhost:3000',
             issuer: 'https://dev-chlrw7rx.us.auth0.com/',
             secret: SECRET,
             algorithms: ['RS256'],
         })
-        app.use(jwtC)
+        app.use(jwtChecker)
         app.use(bodyParser.json())
         app.use(bodyParser.urlencoded({extended: false}))
         app.use(cors({
@@ -34,12 +32,12 @@ export default {
 
         app.listen(port, () => {})
         console.log(`
-        GET http://localhost:${port}
-        GET http://localhost:${port}/mountains
-        GET http://localhost:${port}/mountains/{id}
-        POST http://localhost:${port}/mountains/byHeight
-        POST http://localhost:${port}/mountains
-        DELETE http://localhost:${port}/mountains/{id}
+            GET http://localhost:${port}
+            GET http://localhost:${port}/mountains
+            GET http://localhost:${port}/mountains/{id}
+            POST http://localhost:${port}/mountains/byHeight
+            POST http://localhost:${port}/mountains
+            DELETE http://localhost:${port}/mountains/{id}
         `)
         return app
     }
