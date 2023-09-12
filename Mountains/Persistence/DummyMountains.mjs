@@ -18,7 +18,7 @@ let mountains = [
         height: 5895,
         range: "",
         type: "stratovolcano",
-        description: "A stratovolcano located in Tanzania neear the border of Kenye.",
+        description: "A stratovolcano located in Tanzania near the border of Kenya.",
         id: uuidv4()
     },
     {
@@ -48,7 +48,7 @@ let mountains = [
         height: 8611,
         range: "Karakoram range",
         type: "Mountain",
-        description: "A shitty mountain that is regarded as the second highst mountain in the world. Has also claimed the lives of many good men.",
+        description: "A shitty mountain that is regarded as the second highest mountain in the world. Has also claimed the lives of many good men.",
         id: uuidv4()
     },
     {
